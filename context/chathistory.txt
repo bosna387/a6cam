@@ -1,0 +1,48 @@
+Screenshot 2026-10-08 at 10.11.39.jpeg.png
+
+Uh, what, how do I up- update the firmware on this cam?
+
+This is almost always because the screen layout in Windows doesn’t match how your monitors are physically placed.
+
+    Right-click the desktop and choose Display settings.
+    Click Identify. Numbers appear on each screen, so you can see which is 1 and which is 2.
+    In the diagram at the top, drag the screen boxes so they match how the monitors actually sit. If screen 2 is on your right, put its box on the right of box 1, and make the edges touch.
+    If the boxes are touching only at a corner, the mouse can’t cross. Slide one box up or down until they share part of an edge.
+    Click Apply.
+    Scroll down and check that Multiple displays is set to Extend these displays, not Duplicate.
+
+If that doesn’t fix it:
+
+    Press Win + P and pick Extend.
+    Make sure the second screen isn’t showing as “Disconnected” or “Not detected”. If it is, click Detect, then check the cable.
+    If the mouse crosses but gets stuck at the edge, the two screens may have very different resolutions or scaling. Try setting both to the same scaling, such as 100%.
+
+Are you using a laptop with an external monitor, or two separate monitors on a desktop PC?
+1791924868959_image.png
+
+i hit refresh client list on my router and i get this
+Diagnosing a router timeout with a stale device list.
+
+A “timeout” on refresh just means the router’s web page didn’t get a reply in time. It’s common on cheap routers and doesn’t mean anything is broken.
+
+    Click OK, wait about 10 seconds, and hit Refresh again.
+    If it keeps failing, reload the page (F5) or log out and back in, then reopen the client list.
+    If it’s still stuck, skip the router and use Fing on your iPad or phone. It scans the network directly and doesn’t depend on the router’s page.
+
+Also, the addresses in this list don’t match the earlier ones. For example, esmas-iPhone was 192.168.0.10 and is now 192.168.0.7, and the LG TV has taken .10. Your router hands out addresses dynamically and reshuffles them, so my earlier guess of .12 is no longer reliable. Once you find the camera, set a DHCP reservation (also called static lease or IP binding) in the router for its MAC address. That locks the IP in place, which you’ll need for a stable Home Assistant stream.
+
+To identify the camera again, power it off and on and compare the lists. Look for an entry that is “unknown” or has a name like A9, IPC, or similar.
+1791924977962_image.png
+
+ok this is before turning off
+Identifying devices present before the camera was switched off.
+
+Good, that’s a useful baseline. Now turn the camera off, wait a minute or two, refresh, and send a screenshot of the new list. Scroll through the whole list, because earlier the second screenshot cut off at row 15, so some entries may just have been hidden below.
+
+That also means my earlier guess of .12 is unreliable. That same MAC (8E:B5:C0:3C:C7:07) is still in this list, now at .15, so it probably never disappeared. It’s likely a phone or tablet using a randomized MAC.
+
+When you compare the lists, match by MAC address, not IP, since the IPs keep changing.
+
+In this list, the “unknown” entries are .15, .17 and .20, all on 5G. The camera probably isn’t one of them, since cameras like this usually only support 2.4G. The 2.4G entries are Galaxy-A17, No-name-s-A13 and Galaxy-A32, which all look like phones. The camera may show up under an odd name, such as a string of letters or numbers, once it’s powered on.
+
+s
